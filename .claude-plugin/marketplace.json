@@ -1,10 +1,65 @@
 {
-  "metadata": { "pluginRoot": "./skills" },
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skills-i-use",
+  "description": "Curated skills for AI agents — architecture review, ship checks, UI/UX, CTO reports, and AI engineer talks.",
+  "owner": {
+    "name": "Hitesh Bandhu"
+  },
   "plugins": [
     {
+      "name": "core-skills",
+      "source": "./skills",
+      "description": "Core workflow skills — architecture review, ship checks, UI/UX, CTO reports, and skill authoring",
+      "strict": false,
+      "skills": [
+        "./architecture-review",
+        "./create-a-skill",
+        "./cto-weekly-review",
+        "./ship-check",
+        "./ui-ux"
+      ]
+    },
+    {
       "name": "ai-engineer-talks",
-      "source": "./ai-engineer-talks",
-      "skills": ["./build-rag-search-stacks"]
+      "source": "./skills/ai-engineer-talks",
+      "description": "34 actionable skills from ingested AI Engineer talks",
+      "strict": false,
+      "skills": [
+        "./architect-enterprise-ai",
+        "./author-agent-skills",
+        "./build-agent-harnesses",
+        "./build-aiewf-2024-rag",
+        "./build-generative-media",
+        "./build-multimodal-products",
+        "./build-rag-search-stacks",
+        "./build-robotics-ai",
+        "./build-with-deepmind",
+        "./build-with-microsoft-ai",
+        "./build-with-openai",
+        "./deploy-public-sector-ai",
+        "./design-agent-skills",
+        "./evaluate-with-braintrust",
+        "./lead-ai-engineering-teams",
+        "./lead-ai-transformation",
+        "./learn-summit-2023-remote",
+        "./learn-summit-2023-talks",
+        "./navigate-aie-europe-2026",
+        "./navigate-aiewf-2024-keynotes",
+        "./observe-ai-production",
+        "./operate-agent-memory",
+        "./operate-legal-ai-agents",
+        "./operate-openclaw-agents",
+        "./optimize-llm-inference",
+        "./plan-sovereign-ai",
+        "./price-ai-products",
+        "./run-aiewf-2024-evals",
+        "./run-llm-evals",
+        "./run-summit-2023-workshops",
+        "./secure-ai-agents",
+        "./ship-ai-as-pm",
+        "./ship-aiewf-2024-agents",
+        "./train-llms-locally"
+      ]
     }
   ]
 }
