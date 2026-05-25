@@ -1,0 +1,10 @@
+{
+  "metadata": { "pluginRoot": "./skills" },
+  "plugins": [
+    {
+      "name": "ai-engineer-talks",
+      "source": "./ai-engineer-talks",
+      "skills": ["./build-rag-search-stacks"]
+    }
+  ]
+}

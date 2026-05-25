@@ -27,7 +27,15 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers the five top-level skills under `skills/`:
+The CLI discovers **39 skills** — five core skills under `skills/` plus **34** in the [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle (via [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
+
+```bash
+# List all skills (core + ai-engineer-talks, grouped in output)
+npx skills add hiteshbandhu/skills-i-use --list
+
+# Install an AI engineer talks skill
+npx skills add hiteshbandhu/skills-i-use --skill build-rag-search-stacks -a cursor
+```
 
 | Skill | Install |
 |-------|---------|
@@ -37,7 +45,7 @@ The CLI discovers the five top-level skills under `skills/`:
 | `ship-check` | `npx skills add hiteshbandhu/skills-i-use --skill ship-check` |
 | `ui-ux` | `npx skills add hiteshbandhu/skills-i-use --skill ui-ux` |
 
-The nested **`skills/ai-engineer-talks/*`** skills are not picked up by the CLI yet — copy or symlink the folder you need into `.cursor/skills/` or `~/.cursor/skills/`. See [`skills/ai-engineer-talks/README.md`](skills/ai-engineer-talks/README.md).
+Full index of the **ai-engineer-talks** bundle: [`skills/ai-engineer-talks/README.md`](skills/ai-engineer-talks/README.md).
 
 After install, invoke a skill with `@skill-name` in chat or `/skill-name` in Agent mode.
 

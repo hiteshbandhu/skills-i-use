@@ -6,7 +6,19 @@
 
 **Gaps / retry collect:** [ingest `playlists/_retry-later.json`](https://github.com/hiteshbandhu/ingest-into-skills/blob/main/playlists/_retry-later.json)
 
-## Install (any agent)
+## Install
+
+**Recommended — Skills CLI** (discovered via repo [`.claude-plugin/marketplace.json`](../../.claude-plugin/marketplace.json)):
+
+```bash
+# List all 34 skills (grouped under "Ai Engineer Talks")
+npx skills add hiteshbandhu/skills-i-use --list
+
+# Install one skill
+npx skills add hiteshbandhu/skills-i-use --skill build-rag-search-stacks -a cursor -g
+```
+
+**Manual copy** (any agent):
 
 ```bash
 cp -r skills/ai-engineer-talks/<skill-name> ~/.claude/skills/
