@@ -18,7 +18,8 @@ pixels. Works with any coding agent.
 - [principles.md](principles.md) — product + UI/UX rules (read every time)
 - [review-checklist.md](review-checklist.md) — structured audit
 - [playwright.md](playwright.md) — browser verification with Playwright
-- [report-template.md](report-template.md) — saved review output
+- [report-template.md](report-template.md) — saved review output (the record)
+- [report-template.html](report-template.html) — shareable HTML report with embedded screenshots
 
 Output: `{SKILL_OUTPUT_DIR}/ui-ux/` — see [../OUTPUT.md](../OUTPUT.md)
 
@@ -102,17 +103,33 @@ confirm failed interaction checks now pass.
 
 ## Step 4 — Write Report (audit / pre-ship modes)
 
-Fill [report-template.md](report-template.md).
+Fill [report-template.md](report-template.md) — the canonical record.
 
 **Path:** `{output_dir}/review-YYYY-MM-DD-[slug].md`
 
-Update `{output_dir}/index.md`:
+### Also generate a shareable HTML report when you have screenshots
+
+When the audit produced Playwright screenshots (most audit/polish passes do),
+also emit an HTML version from [report-template.html](report-template.html) —
+it embeds the screenshots inline (incl. before/after pairs) so the user can read
+the whole review without opening files one by one.
+
+1. Copy `report-template.html` → `{output_dir}/review-YYYY-MM-DD-[slug].html`
+2. Replace every `[[PLACEHOLDER]]`; reference screenshots with the **relative**
+   path `screenshots/<file>.png` so the report stays portable.
+3. Use the `.grid2` before/after pattern for any fix you re-screenshotted.
+4. **Open it** for the user: `open {output_dir}/review-...html` (macOS).
+
+Keep both in sync — the HTML is the shareable artifact, the `.md` is the record.
+
+Update `{output_dir}/index.md` (link both formats):
 
 ```markdown
 # UI/UX Reviews
 
 | Date | Scope | Verdict | Report |
 |------|-------|---------|--------|
+| YYYY-MM-DD | [scope] | [verdict] | [md](review-...md) · [html](review-...html) |
 ```
 
 ---
