@@ -49,6 +49,31 @@ Only when the repo gives no clear signal, fall back to these sensible defaults:
 
 ---
 
+## Ask the user when unsure — don't guess
+
+Confirmations before commit / push / merge are always required. Beyond those, **stop
+and ask** (a short, specific question — offer a recommended default) whenever:
+
+- **Scope is mixed** — the diff spans unrelated concerns. Ask whether to split into
+  separate commits/PRs, and which to include now.
+- **Type/scope is genuinely ambiguous** — e.g. `feat` vs `fix`, or no obvious scope.
+  Propose your best guess and confirm rather than silently picking.
+- **Base branch isn't obvious** — repo uses `develop`/`release` branches, or the
+  default isn't clearly the right target. Ask which base to PR against.
+- **No clear repo convention** and it matters (commit style, trailer, squash vs merge).
+  Ask which to follow instead of imposing a default.
+- **Merge intent is unstated** — "raise a PR" doesn't say whether to merge. Default to
+  **opening and holding**; ask before merging unless they said "merge when green."
+- **CI is red** — ask whether to fix now, hold, or abandon. Never merge around it.
+- **Branch protection blocks the merge** — never `--admin`-bypass without asking; confirm
+  the user owns the repo and wants the policy overridden.
+- **Anything destructive or irreversible** — force-push, history rewrite, deleting a
+  shared branch.
+
+Ask once, batch related questions, and proceed on the answer — don't re-litigate.
+
+---
+
 ## Step 0 — Preconditions (hard gates)
 
 Refuse to proceed and explain if any fail:
