@@ -54,10 +54,14 @@ description: >
 
 ### Register new skills
 
-1. Add the folder under `skills/`
+1. Add the folder under `skills/` (with a `SKILL.md`)
 2. Add a row to the skills table in [README.md](README.md)
 3. Add the output subfolder to the layout in [skills/OUTPUT.md](skills/OUTPUT.md) if applicable
 4. Note any cross-skill links (e.g. reads another skill's `index.md`)
+
+The Claude Code marketplace manifest (`.claude-plugin/marketplace.json`) is **auto-synced
+on merge to `main`** by [`scripts/sync-marketplace.mjs`](scripts/sync-marketplace.mjs) — you
+don't need to edit it by hand. To preview locally: `node scripts/sync-marketplace.mjs`.
 
 Or run **`@create-a-skill`** to author a skill interactively — it handles registry updates.
 

@@ -15,6 +15,7 @@
         "./architecture-review",
         "./create-a-skill",
         "./cto-weekly-review",
+        "./raise-pr",
         "./ship-check",
         "./ui-ux"
       ]
