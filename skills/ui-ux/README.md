@@ -59,7 +59,8 @@ ui-ux/
 ├── principles.md
 ├── playwright.md        # browser verification workflow
 ├── review-checklist.md
-├── report-template.md
+├── report-template.md      # markdown record
+├── report-template.html    # shareable HTML report w/ embedded screenshots
 └── README.md
 ```
 
