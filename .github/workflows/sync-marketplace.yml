@@ -1,0 +1,40 @@
+name: Sync marketplace manifest
+
+# Keeps .claude-plugin/marketplace.json in lockstep with the skills/ folders so a
+# new skill is discoverable in Claude Code without manual manifest edits.
+# Runs on merge to main (not on PRs) and commits the synced manifest back.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - ".claude-plugin/marketplace.json"
+      - "scripts/sync-marketplace.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Sync manifest and commit if changed
+        run: |
+          node scripts/sync-marketplace.mjs
+          if git diff --quiet -- .claude-plugin/marketplace.json; then
+            echo "Manifest already in sync."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore: auto-sync marketplace manifest [skip ci]"
+          git push
