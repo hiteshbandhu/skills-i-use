@@ -73,7 +73,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`architecture-review`](skills/architecture-review/) | Structured ADR process — subagent persona debate, markdown ADR, optional HTML, decision registry. |
 | [`cto-weekly-review`](skills/cto-weekly-review/) | Deep weekly engineering report — parallel data collectors, markdown + HTML, links ADRs from architecture-review. **Includes scripts.** |
 | [`ship-check`](skills/ship-check/) | Pre-ship gate — lint, typecheck, tests, build, diff review, commit message draft. Never commits without confirmation. **Includes scripts.** |
-| [`raise-pr`](skills/raise-pr/) | Change → merged PR — conventional scoped commit, branch, PR body from the diff, CI watch, squash-merge when green. Direct-to-main / artifact / red-merge are hard gates. Pairs with ship-check. |
+| [`raise-pr`](skills/raise-pr/) | Change → merged PR — follows the repo's own commit/branch convention, drafts the PR body from the diff, watches CI, squash-merges when green. Direct-to-main / artifact / red-merge are hard gates. General/portable; optionally pairs with ship-check. |
 | [`ui-ux`](skills/ui-ux/) | Product-aware UI/UX review and polish — Playwright verification, principles, checklist audits. |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
 

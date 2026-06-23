@@ -2,12 +2,13 @@
 
 Take a ready change from working tree to a merged PR — cleanly and consistently.
 
-It branches, writes a **conventional scoped commit**, pushes, opens a PR with a body
-drafted from the **actual diff + verification**, watches CI, and **squash-merges when
-green**. Direct-to-main, artifact commits, and red merges are hard gates, not vibes.
+It branches, writes a commit in **the repo's own convention**, pushes, opens a PR with a
+body drafted from the **actual diff + verification**, watches CI, and **squash-merges
+when green**. Direct-to-main, artifact commits, and red merges are hard gates, not vibes.
 
-Pairs with **`ship-check`** (run that first for the quality gate) — this skill owns the
-git/GitHub mechanics that come after.
+General and portable — it reads each repo's `git log` and follows that style rather than
+imposing one. Optionally pairs with **`ship-check`** for the pre-PR quality gate when a
+repo has it set up; this skill owns the git/GitHub mechanics either way.
 
 ## Install
 
