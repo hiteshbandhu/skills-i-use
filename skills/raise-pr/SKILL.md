@@ -1,18 +1,20 @@
 ---
 name: raise-pr
 description: >
-  Take a ready change from working tree to merged PR — branch, conventional scoped
-  commit, push, open PR with a body drafted from the diff, watch CI, and squash-merge
-  when green. Encodes a clean, opinionated PR workflow. Never commits, pushes, or merges
-  without explicit confirmation. Triggers on "raise a PR", "open a PR", "pr this",
-  "push and pr", "ship this PR", "merge when green", "commit and open a pr".
+  Take a ready change from working tree to merged PR — branch, commit, push, open PR with
+  a body drafted from the diff, watch CI, and squash-merge when green. General and
+  portable: follows each repo's own commit/branch convention rather than imposing one.
+  Never commits, pushes, or merges without explicit confirmation. Triggers on "raise a
+  PR", "open a PR", "pr this", "push and pr", "ship this PR", "merge when green",
+  "commit and open a pr".
 ---
 
 # Raise PR — change → merged PR, cleanly
 
-Drives the whole path from a ready working tree to a squash-merged PR, in a
-consistent house style. Pairs with **`ship-check`** (run that first for the
-quality gate; this skill handles the git/GitHub mechanics).
+Drives the whole path from a ready working tree to a squash-merged PR, following
+each repo's own conventions. General and portable — no project-specific assumptions.
+Optionally pairs with **`ship-check`** for the pre-PR quality gate when a repo has it
+set up; this skill owns the git/GitHub mechanics either way.
 
 **This skill performs outward-facing actions (push, open PR, merge). Confirm
 before each: committing, pushing/opening the PR, and merging. Never merge on red
@@ -27,19 +29,23 @@ Output: `{SKILL_OUTPUT_DIR}/raise-pr/` (optional run log) — see [../OUTPUT.md]
 
 ---
 
-## House style (the defaults this skill enforces)
+## Conventions — detect per repo, then match
 
-| Thing | Default |
-|-------|---------|
+This is a **general, portable** skill — it works on any repo and must not impose a
+personal style. **First read the repo's recent `git log --oneline -15` (and a merged
+PR or two) and follow whatever convention it already uses**: commit format, scope
+style, trailer presence, branch naming, merge strategy. The repo's own history wins.
+
+Only when the repo gives no clear signal, fall back to these sensible defaults:
+
+| Thing | Fallback (used only if the repo has no clear convention) |
+|-------|----------------------------------------------------------|
 | Commit format | Conventional + scoped — `type(scope): summary` (`feat`, `fix`, `chore`, `refactor`, `docs`, `test`) |
-| Subject | Specific. Multiple changes → comma-separated list, never "various fixes" |
-| Body | What + why, plain prose, 1–3 sentences. Not a bullet wall |
-| Co-author trailer | **None** by default |
+| Subject | Specific; multiple changes → comma-separated, never "various fixes" |
+| Body | What + why, plain prose, 1–3 sentences |
+| Co-author trailer | Match the repo — include one only if its history already uses one |
 | Branch | `type/kebab-descriptive`, derived from the change |
-| Merge | **Squash**, delete branch, gated on green CI |
-
-These are defaults — read a repo's recent `git log` first and match its actual
-convention if it differs (scopes used, trailer presence, merge style).
+| Merge | Squash, delete branch, gated on green CI |
 
 ---
 
@@ -47,9 +53,10 @@ convention if it differs (scopes used, trailer presence, merge style).
 
 Refuse to proceed and explain if any fail:
 
-1. **Quality gate** — tests/lint/typecheck should be green. If `ship-check` hasn't
-   run this session, run it (or the project's lint + typecheck + test) first. Do
-   not open a PR on a known-broken tree.
+1. **Quality gate** — the repo's tests/lint/typecheck should be green before opening a
+   PR. Run them however *this* repo does it. (`ship-check` is one repo-aware way to run
+   that gate if it's set up here — but it's optional, not a dependency of this skill.)
+   Don't open a PR on a known-broken tree.
 2. **Not on the default branch** — never commit straight to `main`/`master`.
    If on it, Step 1 creates a branch.
 3. **Clean of artifacts** — no screenshots, `skill-outputs/`, build output, `.env`,
