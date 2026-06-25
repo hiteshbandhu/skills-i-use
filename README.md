@@ -27,7 +27,7 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers **39 skills** — five core skills under `skills/` plus **34** in the [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle (via [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
+The CLI discovers **43 skills** — nine core skills under `skills/` plus **34** in the [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle (via [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
 
 ```bash
 # List all skills (core + ai-engineer-talks, grouped in output)
@@ -40,10 +40,14 @@ npx skills add hiteshbandhu/skills-i-use --skill build-rag-search-stacks -a curs
 | Skill | Install |
 |-------|---------|
 | `architecture-review` | `npx skills add hiteshbandhu/skills-i-use --skill architecture-review` |
+| `chat-failure-audit` | `npx skills add hiteshbandhu/skills-i-use --skill chat-failure-audit` |
 | `create-a-skill` | `npx skills add hiteshbandhu/skills-i-use --skill create-a-skill` |
 | `cto-weekly-review` | `npx skills add hiteshbandhu/skills-i-use --skill cto-weekly-review` |
+| `friction-audit` | `npx skills add hiteshbandhu/skills-i-use --skill friction-audit` |
 | `raise-pr` | `npx skills add hiteshbandhu/skills-i-use --skill raise-pr` |
 | `ship-check` | `npx skills add hiteshbandhu/skills-i-use --skill ship-check` |
+| `spec-grounded-design` | `npx skills add hiteshbandhu/skills-i-use --skill spec-grounded-design` |
+| `state-lifetime-decision` | `npx skills add hiteshbandhu/skills-i-use --skill state-lifetime-decision` |
 | `ui-ux` | `npx skills add hiteshbandhu/skills-i-use --skill ui-ux` |
 
 Full index of the **ai-engineer-talks** bundle: [`skills/ai-engineer-talks/README.md`](skills/ai-engineer-talks/README.md).
@@ -76,6 +80,18 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`raise-pr`](skills/raise-pr/) | Change → merged PR — follows the repo's own commit/branch convention, drafts the PR body from the diff, watches CI, squash-merges when green. Direct-to-main / artifact / red-merge are hard gates. General/portable; optionally pairs with ship-check. |
 | [`ui-ux`](skills/ui-ux/) | Product-aware UI/UX review and polish — Playwright verification, principles, checklist audits. |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
+| [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |
+| [`friction-audit`](skills/friction-audit/) | Find every place a flow makes the user do work the system could — classify the friction, design the automatic path, keep destructive actions safe. |
+| [`spec-grounded-design`](skills/spec-grounded-design/) | Ground an integration in reality before coding — pull the spec, probe the live endpoint, reconcile (reality wins), output a design contract. |
+| [`state-lifetime-decision`](skills/state-lifetime-decision/) | Decide where new state lives — scope × durability — with isolation, staleness, growth-bound, and cache checks, then name the tradeoff. |
+
+#### Product-method pipeline
+
+Four of the core skills chain into one workflow for shipping the *right* thing without
+friction: **`chat-failure-audit`** (find what's broken) → **`friction-audit`** (remove the
+friction) → **`spec-grounded-design`** (ground the fix in real API behavior) →
+**`state-lifetime-decision`** (decide any new state) → **`architecture-review`** (for real
+forks). Each hands off to the next; use them standalone or end-to-end.
 
 ### Skills with scripts
 
