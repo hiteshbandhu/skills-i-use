@@ -71,9 +71,7 @@
       "source": "./skills/streaming-ux",
       "description": "Streaming chat UX skills — scroll engineering and reader intent audits",
       "strict": false,
-      "skills": [
-        "./scroll-engineering"
-      ]
+      "skills": []
     }
   ]
 }
