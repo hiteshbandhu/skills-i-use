@@ -13,10 +13,14 @@
       "strict": false,
       "skills": [
         "./architecture-review",
+        "./chat-failure-audit",
         "./create-a-skill",
         "./cto-weekly-review",
+        "./friction-audit",
         "./raise-pr",
         "./ship-check",
+        "./spec-grounded-design",
+        "./state-lifetime-decision",
         "./ui-ux"
       ]
     },
