@@ -65,6 +65,15 @@
         "./ship-aiewf-2024-agents",
         "./train-llms-locally"
       ]
+    },
+    {
+      "name": "streaming-ux",
+      "source": "./skills/streaming-ux",
+      "description": "Streaming chat UX skills — scroll engineering and reader intent audits",
+      "strict": false,
+      "skills": [
+        "./scroll-engineering"
+      ]
     }
   ]
 }
