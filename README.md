@@ -27,14 +27,20 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers **43 skills** — nine core skills under `skills/` plus **34** in the [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle (via [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
+The CLI discovers **45 skills** — ten core skills under `skills/` plus **34** in the
+[`ai-engineer-talks`](skills/ai-engineer-talks/) bundle plus **1** in the
+[`streaming-ux`](skills/streaming-ux/) bundle (via
+[`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
 
 ```bash
-# List all skills (core + ai-engineer-talks, grouped in output)
+# List all skills (core + ai-engineer-talks + streaming-ux, grouped in output)
 npx skills add hiteshbandhu/skills-i-use --list
 
 # Install an AI engineer talks skill
 npx skills add hiteshbandhu/skills-i-use --skill build-rag-search-stacks -a cursor
+
+# Install the streaming-ux skill
+npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 ```
 
 | Skill | Install |
@@ -112,6 +118,13 @@ Each scripted skill documents its scripts in its README. When an agent proposes 
 Topics include RAG, evals, agents, harnesses, OpenAI/DeepMind/Microsoft, AIEWF 2024 tracks, Summit 2023, Europe 2026 keynotes, security, legal AI, OpenClaw, PM/leadership, inference, robotics, generative media, skills/MCP, and more.
 
 From [ingest-into-skills](https://github.com/hiteshbandhu/ingest-into-skills); [create-a-skill](skills/create-a-skill/) hygiene before sync.
+
+### Streaming UX
+
+**1 skill** — [`scroll-engineering`](skills/streaming-ux/scroll-engineering/) audits a
+streaming chat UI against the 15-point scroll engineering checklist: reader intent,
+viewport control, layout stability, and accessibility. Credit: principles by
+[@shadcn](https://x.com/shadcn/status/2070394918720221522).
 
 ---
 
