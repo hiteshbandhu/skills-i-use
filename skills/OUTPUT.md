@@ -31,8 +31,10 @@ project root.
 ├── secure-ai-agents/
 ├── build-agent-harnesses/
 ├── operate-legal-ai-agents/
-└── build-with-openai/
-    └── index.md, runbooks, checklists per skill
+├── build-with-openai/
+│   └── index.md, runbooks, checklists per skill
+└── scroll-engineering/
+    └── report.md
 ```
 
 ## Resolution order
