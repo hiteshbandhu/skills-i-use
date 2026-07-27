@@ -15,6 +15,7 @@
         "./architecture-review",
         "./chat-failure-audit",
         "./create-a-skill",
+        "./cross-model-review",
         "./cto-weekly-review",
         "./friction-audit",
         "./raise-pr",
