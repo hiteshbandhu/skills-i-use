@@ -25,6 +25,10 @@ project root.
 ├── create-a-skill/
 │   ├── index.md
 │   └── design-2026-05-24-my-skill.md
+├── cross-model-review/
+│   ├── index.md
+│   ├── pr-161-diff.patch
+│   └── review-2026-05-24-pr-161.md
 ├── operate-openclaw-agents/
 ├── build-rag-search-stacks/
 ├── run-llm-evals/

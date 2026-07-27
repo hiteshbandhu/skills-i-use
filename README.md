@@ -48,6 +48,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `architecture-review` | `npx skills add hiteshbandhu/skills-i-use --skill architecture-review` |
 | `chat-failure-audit` | `npx skills add hiteshbandhu/skills-i-use --skill chat-failure-audit` |
 | `create-a-skill` | `npx skills add hiteshbandhu/skills-i-use --skill create-a-skill` |
+| `cross-model-review` | `npx skills add hiteshbandhu/skills-i-use --skill cross-model-review` |
 | `cto-weekly-review` | `npx skills add hiteshbandhu/skills-i-use --skill cto-weekly-review` |
 | `friction-audit` | `npx skills add hiteshbandhu/skills-i-use --skill friction-audit` |
 | `raise-pr` | `npx skills add hiteshbandhu/skills-i-use --skill raise-pr` |
