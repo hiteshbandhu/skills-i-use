@@ -22,6 +22,10 @@ project root.
 │   ├── index.md
 │   ├── review-2026-05-24-hero.md
 │   └── screenshots/
+├── verify-like-a-user/
+│   ├── index.md
+│   ├── verify-2026-09-08-settings.md
+│   └── screenshots/
 ├── pdf-report/
 │   ├── index.md
 │   ├── acme-audit-2026-05-24.html

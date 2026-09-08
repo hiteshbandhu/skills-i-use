@@ -57,6 +57,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `spec-grounded-design` | `npx skills add hiteshbandhu/skills-i-use --skill spec-grounded-design` |
 | `state-lifetime-decision` | `npx skills add hiteshbandhu/skills-i-use --skill state-lifetime-decision` |
 | `ui-ux` | `npx skills add hiteshbandhu/skills-i-use --skill ui-ux` |
+| `verify-like-a-user` | `npx skills add hiteshbandhu/skills-i-use --skill verify-like-a-user` |
 
 Full index of the **ai-engineer-talks** bundle: [`skills/ai-engineer-talks/README.md`](skills/ai-engineer-talks/README.md).
 
@@ -87,6 +88,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`ship-check`](skills/ship-check/) | Pre-ship gate — lint, typecheck, tests, build, diff review, commit message draft. Never commits without confirmation. **Includes scripts.** |
 | [`raise-pr`](skills/raise-pr/) | Change → merged PR — follows the repo's own commit/branch convention, drafts the PR body from the diff, watches CI, squash-merges when green. Direct-to-main / artifact / red-merge are hard gates. General/portable; optionally pairs with ship-check. |
 | [`ui-ux`](skills/ui-ux/) | Product-aware UI/UX review and polish — Playwright verification, principles, checklist audits. |
+| [`verify-like-a-user`](skills/verify-like-a-user/) | Build-and-verify loop for UI — measure the rendered page instead of the source, break it at four widths and on the click-through path, fix the root cause, re-measure. Ships a symptom → cause → fix catalogue of UI bugs that pass code review. |
 | [`pdf-report`](skills/pdf-report/) | Client-ready PDFs from HTML + headless Chrome — the print-CSS traps that silently clip content, inline SVG diagrams, hitting an exact page count, and the evidence discipline a client document needs. **Includes a template.** |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
 | [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |

@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "skills-i-use",
-  "description": "Curated skills for AI agents \u2014 architecture review, ship checks, UI/UX, CTO reports, and AI engineer talks.",
+  "description": "Curated skills for AI agents — architecture review, ship checks, UI/UX, CTO reports, and AI engineer talks.",
   "owner": {
     "name": "Hitesh Bandhu"
   },
@@ -9,7 +9,7 @@
     {
       "name": "core-skills",
       "source": "./skills",
-      "description": "Core workflow skills \u2014 architecture review, ship checks, UI/UX, CTO reports, and skill authoring",
+      "description": "Core workflow skills — architecture review, ship checks, UI/UX, CTO reports, and skill authoring",
       "strict": false,
       "skills": [
         "./architecture-review",
@@ -23,7 +23,8 @@
         "./ship-check",
         "./spec-grounded-design",
         "./state-lifetime-decision",
-        "./ui-ux"
+        "./ui-ux",
+        "./verify-like-a-user"
       ]
     },
     {
@@ -71,7 +72,7 @@
     {
       "name": "streaming-ux",
       "source": "./skills/streaming-ux",
-      "description": "Streaming chat UX skills \u2014 scroll engineering and reader intent audits",
+      "description": "Streaming chat UX skills — scroll engineering and reader intent audits",
       "strict": false,
       "skills": [
         "./scroll-engineering"
