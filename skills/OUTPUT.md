@@ -22,6 +22,10 @@ project root.
 │   ├── index.md
 │   ├── review-2026-05-24-hero.md
 │   └── screenshots/
+├── pdf-report/
+│   ├── index.md
+│   ├── acme-audit-2026-05-24.html
+│   └── acme-audit-2026-05-24.pdf
 ├── create-a-skill/
 │   ├── index.md
 │   └── design-2026-05-24-my-skill.md

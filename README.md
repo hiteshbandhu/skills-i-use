@@ -51,6 +51,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `cross-model-review` | `npx skills add hiteshbandhu/skills-i-use --skill cross-model-review` |
 | `cto-weekly-review` | `npx skills add hiteshbandhu/skills-i-use --skill cto-weekly-review` |
 | `friction-audit` | `npx skills add hiteshbandhu/skills-i-use --skill friction-audit` |
+| `pdf-report` | `npx skills add hiteshbandhu/skills-i-use --skill pdf-report` |
 | `raise-pr` | `npx skills add hiteshbandhu/skills-i-use --skill raise-pr` |
 | `ship-check` | `npx skills add hiteshbandhu/skills-i-use --skill ship-check` |
 | `spec-grounded-design` | `npx skills add hiteshbandhu/skills-i-use --skill spec-grounded-design` |
@@ -86,6 +87,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`ship-check`](skills/ship-check/) | Pre-ship gate — lint, typecheck, tests, build, diff review, commit message draft. Never commits without confirmation. **Includes scripts.** |
 | [`raise-pr`](skills/raise-pr/) | Change → merged PR — follows the repo's own commit/branch convention, drafts the PR body from the diff, watches CI, squash-merges when green. Direct-to-main / artifact / red-merge are hard gates. General/portable; optionally pairs with ship-check. |
 | [`ui-ux`](skills/ui-ux/) | Product-aware UI/UX review and polish — Playwright verification, principles, checklist audits. |
+| [`pdf-report`](skills/pdf-report/) | Client-ready PDFs from HTML + headless Chrome — the print-CSS traps that silently clip content, inline SVG diagrams, hitting an exact page count, and the evidence discipline a client document needs. **Includes a template.** |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
 | [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |
 | [`friction-audit`](skills/friction-audit/) | Find every place a flow makes the user do work the system could — classify the friction, design the automatic path, keep destructive actions safe. |
