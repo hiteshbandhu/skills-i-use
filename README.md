@@ -27,7 +27,7 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers **45 skills** — ten core skills under `skills/` plus **34** in the
+The CLI discovers **46 skills** — ten core skills under `skills/` plus **34** in the
 [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle plus **1** in the
 [`streaming-ux`](skills/streaming-ux/) bundle (via
 [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
@@ -53,6 +53,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `friction-audit` | `npx skills add hiteshbandhu/skills-i-use --skill friction-audit` |
 | `pdf-report` | `npx skills add hiteshbandhu/skills-i-use --skill pdf-report` |
 | `raise-pr` | `npx skills add hiteshbandhu/skills-i-use --skill raise-pr` |
+| `research-report` | `npx skills add hiteshbandhu/skills-i-use --skill research-report` |
 | `ship-check` | `npx skills add hiteshbandhu/skills-i-use --skill ship-check` |
 | `spec-grounded-design` | `npx skills add hiteshbandhu/skills-i-use --skill spec-grounded-design` |
 | `state-lifetime-decision` | `npx skills add hiteshbandhu/skills-i-use --skill state-lifetime-decision` |
@@ -90,6 +91,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`ui-ux`](skills/ui-ux/) | Product-aware UI/UX review and polish — Playwright verification, principles, checklist audits. |
 | [`verify-like-a-user`](skills/verify-like-a-user/) | Build-and-verify loop for UI — measure the rendered page instead of the source, break it at four widths and on the click-through path, fix the root cause, re-measure. Ships a symptom → cause → fix catalogue of UI bugs that pass code review. |
 | [`pdf-report`](skills/pdf-report/) | Client-ready PDFs from HTML + headless Chrome — the print-CSS traps that silently clip content, inline SVG diagrams, hitting an exact page count, and the evidence discipline a client document needs. **Includes a template.** |
+| [`research-report`](skills/research-report/) | Deep research on a new tech paradigm — architecture, philosophy, providers with real prices, and where it fits in your codebase — as a visual, shareable PDF. Parallel researchers, no duplication, renders via `pdf-report`. |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
 | [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |
 | [`friction-audit`](skills/friction-audit/) | Find every place a flow makes the user do work the system could — classify the friction, design the automatic path, keep destructive actions safe. |

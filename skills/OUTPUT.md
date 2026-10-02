@@ -30,6 +30,9 @@ project root.
 │   ├── index.md
 │   ├── acme-audit-2026-05-24.html
 │   └── acme-audit-2026-05-24.pdf
+├── research-report/
+│   ├── index.md
+│   └── always-on-sandboxes/   # notes/, .md, .html, .pdf
 ├── create-a-skill/
 │   ├── index.md
 │   └── design-2026-05-24-my-skill.md
