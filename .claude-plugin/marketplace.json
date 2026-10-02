@@ -20,6 +20,7 @@
         "./friction-audit",
         "./pdf-report",
         "./raise-pr",
+        "./research-report",
         "./ship-check",
         "./spec-grounded-design",
         "./state-lifetime-decision",
