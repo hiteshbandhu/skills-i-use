@@ -27,7 +27,7 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers **46 skills** — ten core skills under `skills/` plus **34** in the
+The CLI discovers **47 skills** — ten core skills under `skills/` plus **34** in the
 [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle plus **1** in the
 [`streaming-ux`](skills/streaming-ux/) bundle (via
 [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
@@ -56,6 +56,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `research-report` | `npx skills add hiteshbandhu/skills-i-use --skill research-report` |
 | `ship-check` | `npx skills add hiteshbandhu/skills-i-use --skill ship-check` |
 | `spec-grounded-design` | `npx skills add hiteshbandhu/skills-i-use --skill spec-grounded-design` |
+| `ste100` | `npx skills add hiteshbandhu/skills-i-use --skill ste100` |
 | `state-lifetime-decision` | `npx skills add hiteshbandhu/skills-i-use --skill state-lifetime-decision` |
 | `ui-ux` | `npx skills add hiteshbandhu/skills-i-use --skill ui-ux` |
 | `verify-like-a-user` | `npx skills add hiteshbandhu/skills-i-use --skill verify-like-a-user` |
@@ -92,6 +93,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`verify-like-a-user`](skills/verify-like-a-user/) | Build-and-verify loop for UI — measure the rendered page instead of the source, break it at four widths and on the click-through path, fix the root cause, re-measure. Ships a symptom → cause → fix catalogue of UI bugs that pass code review. |
 | [`pdf-report`](skills/pdf-report/) | Client-ready PDFs from HTML + headless Chrome — the print-CSS traps that silently clip content, inline SVG diagrams, hitting an exact page count, and the evidence discipline a client document needs. **Includes a template.** |
 | [`research-report`](skills/research-report/) | Deep research on a new tech paradigm — architecture, philosophy, providers with real prices, and where it fits in your codebase — as a visual, shareable PDF. Parallel researchers, no duplication, renders via `pdf-report`. |
+| [`ste100`](skills/ste100/) | Write explanations, documents and diagrams in ASD-STE100 Simplified Technical English (the aerospace controlled language) — intent → document type → trajectory, engineering diagram standards, Hairline and Blueprint styles. **Includes scripts.** |
 | [`create-a-skill`](skills/create-a-skill/) | Author or improve repo skills — hard questions, reviewer subagents, validate, register. **Includes scripts.** |
 | [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |
 | [`friction-audit`](skills/friction-audit/) | Find every place a flow makes the user do work the system could — classify the friction, design the automatic path, keep destructive actions safe. |
@@ -108,13 +110,14 @@ forks). Each hands off to the next; use them standalone or end-to-end.
 
 ### Skills with scripts
 
-Three skills ship shell scripts under `scripts/`. **Always read a script before running it** — review paths, env vars, and side effects. Do not run blindly.
+Four skills ship scripts under `scripts/`. **Always read a script before running it** — review paths, env vars, and side effects. Do not run blindly.
 
 | Skill | Scripts | What they touch |
 |-------|---------|-----------------|
 | [`cto-weekly-review`](skills/cto-weekly-review/) | `collect-git.sh`, `collect-ai-sessions.sh`, `collect-context.sh` | Git repos, AI session logs, shell history, file timestamps, optional `gh` |
 | [`ship-check`](skills/ship-check/) | `ship-check.sh` | Project lint/typecheck/test/build commands, git status/diff |
 | [`create-a-skill`](skills/create-a-skill/) | `validate-skill.sh` | Skill folder structure and conventions (read-only checks) |
+| [`ste100`](skills/ste100/) | `build_dictionary.py`, `ste_check.py` | Downloads the STE spec PDF to the temp folder and writes `dictionary/` in the skill; the checker only reads text |
 
 Each scripted skill documents its scripts in its README. When an agent proposes running one, double-check the command first.
 
