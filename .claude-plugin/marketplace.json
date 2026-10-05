@@ -24,6 +24,7 @@
         "./ship-check",
         "./spec-grounded-design",
         "./state-lifetime-decision",
+        "./ste100",
         "./ui-ux",
         "./verify-like-a-user"
       ]
