@@ -27,7 +27,7 @@ npx skills add hiteshbandhu/skills-i-use --skill ship-check -a cursor
 npx skills find ship check
 ```
 
-The CLI discovers **47 skills** — ten core skills under `skills/` plus **34** in the
+The CLI discovers **48 skills** — ten core skills under `skills/` plus **34** in the
 [`ai-engineer-talks`](skills/ai-engineer-talks/) bundle plus **1** in the
 [`streaming-ux`](skills/streaming-ux/) bundle (via
 [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)):
@@ -60,6 +60,7 @@ npx skills add hiteshbandhu/skills-i-use --skill scroll-engineering
 | `state-lifetime-decision` | `npx skills add hiteshbandhu/skills-i-use --skill state-lifetime-decision` |
 | `ui-ux` | `npx skills add hiteshbandhu/skills-i-use --skill ui-ux` |
 | `verify-like-a-user` | `npx skills add hiteshbandhu/skills-i-use --skill verify-like-a-user` |
+| `reel-edit` | `npx skills add hiteshbandhu/skills-i-use --skill reel-edit` |
 
 Full index of the **ai-engineer-talks** bundle: [`skills/ai-engineer-talks/README.md`](skills/ai-engineer-talks/README.md).
 
@@ -98,6 +99,7 @@ output to `./skill-outputs/{skill-name}/` in your project (configurable via
 | [`chat-failure-audit`](skills/chat-failure-audit/) | Turn a real transcript into a ranked, root-caused failure list — symptom → cause → layer, six failure classes, frequency × severity. |
 | [`friction-audit`](skills/friction-audit/) | Find every place a flow makes the user do work the system could — classify the friction, design the automatic path, keep destructive actions safe. |
 | [`spec-grounded-design`](skills/spec-grounded-design/) | Ground an integration in reality before coding — pull the spec, probe the live endpoint, reconcile (reality wins), output a design contract. |
+| [`reel-edit`](skills/reel-edit/) | Raw phone footage → finished 9:16 reel on a Mac: concept-first workflow, beat grids, HTML-rendered motion type, on-device Apple Vision / Core ML / MLX models (mattes, subject lift, depth, pose), synthesised SFX, -14 LUFS mix, plus a taste log from 17+ real cuts. **Includes scripts.** |
 | [`state-lifetime-decision`](skills/state-lifetime-decision/) | Decide where new state lives — scope × durability — with isolation, staleness, growth-bound, and cache checks, then name the tradeoff. |
 
 #### Product-method pipeline
@@ -110,13 +112,14 @@ forks). Each hands off to the next; use them standalone or end-to-end.
 
 ### Skills with scripts
 
-Four skills ship scripts under `scripts/`. **Always read a script before running it** — review paths, env vars, and side effects. Do not run blindly.
+Five skills ship scripts under `scripts/`. **Always read a script before running it** — review paths, env vars, and side effects. Do not run blindly.
 
 | Skill | Scripts | What they touch |
 |-------|---------|-----------------|
 | [`cto-weekly-review`](skills/cto-weekly-review/) | `collect-git.sh`, `collect-ai-sessions.sh`, `collect-context.sh` | Git repos, AI session logs, shell history, file timestamps, optional `gh` |
 | [`ship-check`](skills/ship-check/) | `ship-check.sh` | Project lint/typecheck/test/build commands, git status/diff |
 | [`create-a-skill`](skills/create-a-skill/) | `validate-skill.sh` | Skill folder structure and conventions (read-only checks) |
+| [`reel-edit`](skills/reel-edit/) | `ingest.py`, `beats.py`, `render_html.py`, `mix.py`, `encode.sh`, Swift Vision tools, `fx/*.py` | Your clips and a project dir you choose; compiles local Swift tools; headless Chromium; optional model downloads (whisper, Depth Anything, MLX detectors) |
 | [`ste100`](skills/ste100/) | `build_dictionary.py`, `ste_check.py` | Downloads the STE spec PDF to the temp folder and writes `dictionary/` in the skill; the checker only reads text |
 
 Each scripted skill documents its scripts in its README. When an agent proposes running one, double-check the command first.

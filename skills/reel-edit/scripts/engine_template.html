@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  reel-edit engine template. Copy it per reel, then change the look; keep the contract:
+    async render(t)  - draw the frame at time t (seconds). Deterministic. Await every image decode.
+    window.DUR       - reel length in seconds.
+  Rendered by render_html.py, which substitutes __ROOT__ __CNT__ __MCNT__ __GRID__ __DATA__.
+  Shows the three techniques that landed best:
+    "type"   - giant type that fills the width, footage visible INSIDE the letters (canvas source-in;
+               CSS clip-path:url(#svgClip) with <text> silently renders nothing in headless Chromium)
+    "full"   - full-bleed footage, slow push + 3-frame punch on the cut
+    "behind" - a giant word placed BEHIND the person (footage, word, then person re-drawn through the matte)
+  Shot times are in beats (bt(b) -> seconds) so every cut sits on the music.
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:HEAD;src:local("Futura-CondensedExtraBold"),local("Impact"),local("Arial Black")}
+@font-face{font-family:BODY;src:local("Futura-Medium"),local("Helvetica Neue")}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--paper:#F1EEE6;--ink:#111111;--red:#FF3B1F}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+.L{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#grain{mix-blend-mode:multiply;opacity:.10}
+</style></head><body>
+<div class="L" id="bg"></div>
+<canvas class="L" id="cv" width="1080" height="1920"></canvas>
+<canvas class="L" id="grain" width="540" height="960"></canvas>
+<script>
+const ROOT='__ROOT__', CNT=__CNT__, MCNT=__MCNT__, G0=__GRID__, DATA=__DATA__;
+const FPS=30, $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), P=(t,a,b)=>clamp((t-a)/(b-a)), lerp=(a,b,k)=>a+(b-a)*k;
+const eo3=x=>1-Math.pow(1-clamp(x),3), eo5=x=>1-Math.pow(1-clamp(x),5);
+const css=v=>v&&v.startsWith('var(')?getComputedStyle(document.documentElement).getPropertyValue(v.slice(4,-1)).trim():v;
+// beat grid: from beats.py, or a fixed 120 bpm grid when no track yet
+const G=G0.length?G0:Array.from({length:200},(_,i)=>i*0.5);
+const bt=b=>{const i=Math.floor(b),f=b-i;return lerp(G[i],G[i+1]??G[i]+0.5,f)};
+const SHOTS=DATA.shots||[
+  {b:[0,2],type:'type',lines:[{t:'BOOKS',fill:'mask'},{t:'OPEN',fill:'var(--red)'}],clip:'01',in:0.2},
+  {b:[2,4],type:'full',clip:'01',in:0.5,zoom:[1.0,1.08],focus:[0.5,0.5]},
+  {b:[4,6],type:'behind',clip:'01',in:1.0,word:'READ',y:0.30},
+];
+const END=DATA.end_beat??SHOTS[SHOTS.length-1].b[1];
+// ---------- media: cached and awaited, so a screenshot never catches a half-decoded frame
+const cache={};
+function frameURL(dir,clip,sec,count){const n=count[clip]||1;const i=clamp(Math.round(sec*FPS),0,n-1);return `${ROOT}${dir}/${clip}/${String(i).padStart(4,'0')}.${dir==='fr'?'jpg':'png'}`}
+function loadImg(url){if(!cache[url]){cache[url]=new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=url})}return cache[url]}
+// mattes are grayscale PNGs with no alpha: turn luminance into alpha once, then cache
+const mcache={};
+function loadMatte(url){if(!mcache[url]){mcache[url]=loadImg(url).then(im=>{if(!im)return null;const c=new OffscreenCanvas(im.width,im.height),x=c.getContext('2d');x.drawImage(im,0,0);
+  const d=x.getImageData(0,0,im.width,im.height);for(let i=0;i<d.data.length;i+=4){d.data[i+3]=d.data[i];}x.putImageData(d,0,0);return c})}return mcache[url]}
+// ---------- type: fill the width exactly (fonts are loaded before the first render)
+const mctx=new OffscreenCanvas(10,10).getContext('2d');
+function natW(t,font='HEAD'){mctx.font=`100px ${font}`;return mctx.measureText(t).width}
+function layout(lines,W=960,cy=960,gap=36){const L=lines.map(l=>{const fs=100*W/natW(l.t);return{...l,fs,W,cap:fs*0.735}});
+  let top=cy-(L.reduce((a,l)=>a+l.cap,0)+gap*(L.length-1))/2;L.forEach(l=>{l.base=top+l.cap;top+=l.cap+gap});return L}
+// ---------- grain (seeded, 4 plates cycled)
+let sd=7;const rnd=()=>{sd=(sd*1664525+1013904223)>>>0;return sd/4294967296};
+const GR=[];{const c=$('grain').getContext('2d');for(let k=0;k<4;k++){const d=c.createImageData(540,960);for(let i=0;i<d.data.length;i+=4){const v=195+rnd()*60;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}GR.push(d)}}
+// ---------- camera: zoom z about focus (fx,fy in 0..1), never reveals an edge
+function drawCover(ctx,img,z,fx,fy){let tx=540-fx*1080*z,ty=960-fy*1920*z;tx=clamp(tx,1080-1080*z,0);ty=clamp(ty,1920-1920*z,0);ctx.drawImage(img,tx,ty,1080*z,1920*z)}
+function drawWord(ctx,txt,fs,x,base,s,cy){ctx.save();ctx.translate(x,cy);ctx.scale(s,s);ctx.translate(-x,-cy);ctx.font=`${fs}px HEAD`;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(txt,x,base);ctx.restore()}
+async function render(t){
+  await document.fonts.load('100px HEAD');
+  let bf=0;while(bf<G.length-1&&G[bf+1]<=t)bf++;bf+=(t-G[bf])/((G[bf+1]??G[bf]+0.5)-G[bf]);
+  const sc=SHOTS.find(s=>bf>=s.b[0]&&bf<s.b[1])||SHOTS[SHOTS.length-1];
+  const u=t-bt(sc.b[0]), k=P(t,bt(sc.b[0]),bt(sc.b[1]));
+  const ctx=$('cv').getContext('2d');ctx.clearRect(0,0,1080,1920);
+  $('bg').style.background=css(sc.bg)||css('var(--paper)');
+  if(sc.type==='full'||sc.type==='behind'){
+    const img=await loadImg(frameURL('fr',sc.clip,sc.in+u,CNT));
+    let z=lerp(...(sc.zoom||[1.0,1.06]),k); if(u<0.1)z*=1+0.035*(1-u/0.1);      // 3-frame punch on the cut
+    const [fx,fy]=sc.focus||[0.5,0.5]; if(img)drawCover(ctx,img,z,fx,fy);
+    if(sc.type==='behind'){
+      // 1) giant word over the footage   2) the person re-drawn on top through the matte (mk/ from vision/bin/seg)
+      const fs=Math.min(560,100*1000/natW(sc.word)), q=eo5(P(t,bt(sc.b[0]),bt(sc.b[0])+0.35)), y=1920*sc.y;
+      ctx.fillStyle=css(sc.color)||'#fff'; drawWord(ctx,sc.word,fs,540,y+fs*0.36,1.12-0.12*q,y);
+      const m=await loadMatte(frameURL('mk',sc.clip,sc.in+u,MCNT));
+      if(m&&img){const off=new OffscreenCanvas(1080,1920),o=off.getContext('2d');drawCover(o,img,z,fx,fy);o.globalCompositeOperation='destination-in';drawCover(o,m,z,fx,fy);ctx.drawImage(off,0,0)}
+    }
+  }
+  if(sc.type==='type'){
+    sc.L=sc.L||layout(sc.lines);
+    const img=await loadImg(frameURL('fr',sc.clip,sc.in+u,CNT));
+    sc.L.forEach((l,i)=>{const t0=bt(sc.b[0]+i*0.5);if(t<t0-0.005)return;
+      const s=1.07-0.07*eo3(P(t,t0,t0+0.13)),cy=l.base-l.cap/2;
+      if(l.fill==='mask'&&img){  // footage INSIDE the letters: draw text, then footage with source-in
+        const off=new OffscreenCanvas(1080,1920),o=off.getContext('2d');o.fillStyle='#000';drawWord(o,l.t,l.fs,540,l.base,s,cy);
+        o.globalCompositeOperation='source-in';o.filter='grayscale(1) contrast(1.2) brightness(1.08)';drawCover(o,img,1.0,.5,.5);ctx.drawImage(off,0,0)}
+      else{ctx.fillStyle=css(l.fill)||'#111';drawWord(ctx,l.t,l.fs,540,l.base,s,cy)}});
+  }
+  $('grain').getContext('2d').putImageData(GR[Math.floor(t*FPS)%4],0,0);
+}
+window.render=render; window.DUR=bt(END);
+</script></body></html>
