@@ -18,6 +18,7 @@
         "./cross-model-review",
         "./cto-weekly-review",
         "./friction-audit",
+        "./ig-carousel",
         "./pdf-report",
         "./raise-pr",
         "./reel-edit",
