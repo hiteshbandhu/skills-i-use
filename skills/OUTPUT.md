@@ -33,6 +33,8 @@ project root.
 ├── research-report/
 │   ├── index.md
 │   └── always-on-sandboxes/   # notes/, .md, .html, .pdf
+├── reel-edit/
+│   └── <project>/             # fr/ mk/ depth/ out/ au/, shots.json, engine.html, mix.wav
 ├── create-a-skill/
 │   ├── index.md
 │   └── design-2026-05-24-my-skill.md

@@ -20,6 +20,7 @@
         "./friction-audit",
         "./pdf-report",
         "./raise-pr",
+        "./reel-edit",
         "./research-report",
         "./ship-check",
         "./spec-grounded-design",
