@@ -33,6 +33,8 @@ project root.
 ├── research-report/
 │   ├── index.md
 │   └── always-on-sandboxes/   # notes/, .md, .html, .pdf
+├── ig-carousel/
+│   └── <project>/             # spec.json, stickers/, slide_NN.jpg, sheet.jpg
 ├── reel-edit/
 │   └── <project>/             # fr/ mk/ depth/ out/ au/, shots.json, engine.html, mix.wav
 ├── create-a-skill/

@@ -1,0 +1,30 @@
+{
+ "size": [1080, 1350], "slides": 5, "seed": 7, "grain": 0.06,
+ "fonts": {"head": "/System/Library/Fonts/Supplemental/Futura.ttc#4",
+           "label": "/System/Library/Fonts/Supplemental/AmericanTypewriter.ttc#5"},
+ "backgrounds": ["#FF5A3C", "#2D46E8", "#FFC93C", "#3CCB9A", "#F4EFE6"],
+ "elements": [
+  {"type": "text", "text": "STOP", "x": 540, "y": 260, "fit_w": 780, "color": "#FFC93C", "rot": -2},
+  {"type": "text", "text": "SCROLLING", "x": 540, "y": 520, "fit_w": 900, "color": "#141414", "rot": 2},
+  {"type": "sticker", "src": "stickers/photo1.jpg", "matte": "stickers/photo1.png", "x": 540, "y": 1000, "h": 560, "rot": -5},
+  {"type": "label", "text": "SWIPE  ->", "x": 900, "y": 1200, "size": 40, "rot": 3},
+  {"type": "torn", "x0": 860, "x1": 1500, "y": 1285, "h": 70, "color": "#F4EFE6", "rot": -2},
+
+  {"type": "text", "text": "IDEA ONE", "x": 1620, "y": 240, "fit_w": 860, "color": "#F4EFE6"},
+  {"type": "sticker", "src": "stickers/photo2.jpg", "matte": "stickers/photo2.png", "x": 1620, "y": 900, "h": 680, "rot": 6},
+  {"type": "tape", "x": 1500, "y": 560, "rot": -14},
+
+  {"type": "text", "text": "IDEA TWO", "x": 2700, "y": 240, "fit_w": 860, "color": "#141414"},
+  {"type": "dots", "x": 2400, "y": 760, "w": 260, "h": 260, "color": "#E8A92A"},
+  {"type": "sticker", "src": "stickers/photo3.jpg", "matte": "stickers/photo3.png", "x": 3180, "y": 900, "h": 600, "rot": 18},
+
+  {"type": "text", "text": "IDEA THREE", "x": 3780, "y": 240, "fit_w": 900, "color": "#141414"},
+  {"type": "bubble", "x": 3600, "y": 650, "w": 180, "h": 130, "text": "?", "tail": [40, 90]},
+  {"type": "sticker", "src": "stickers/photo4.jpg", "matte": "stickers/photo4.png", "x": 3800, "y": 980, "h": 620, "rot": -4},
+
+  {"type": "text", "text": "YOUR PROMISE", "x": 4860, "y": 300, "fit_w": 900, "color": "#FF5A3C"},
+  {"type": "sticker", "src": "stickers/photo5.jpg", "matte": "stickers/photo5.png", "x": 4860, "y": 780, "h": 480, "rot": 3},
+  {"type": "pill", "text": "COMMENT \"YES\"", "x": 4860, "y": 1160, "size": 92, "bg": "#141414", "color": "#FFC93C", "rot": -2},
+  {"type": "label", "text": "YOUR BRAND", "x": 4860, "y": 1285, "size": 34}
+ ]
+}
